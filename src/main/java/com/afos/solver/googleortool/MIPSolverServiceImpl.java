@@ -1,6 +1,9 @@
-package com.afos.service;
+package com.afos.solver.googleortool;
 
-import com.afos.bean.DataModel;
+import com.afos.app.service.api.DataModelService;
+import com.afos.app.bean.DataModel;
+import com.afos.solver.SolverService;
+import com.afos.solver.googleortool.LPSolverServiceImpl;
 import com.google.ortools.linearsolver.MPConstraint;
 import com.google.ortools.linearsolver.MPObjective;
 import com.google.ortools.linearsolver.MPSolver;
@@ -8,7 +11,6 @@ import com.google.ortools.linearsolver.MPVariable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 public class MIPSolverServiceImpl implements SolverService {
     protected Logger logger = LoggerFactory.getLogger(getClass());

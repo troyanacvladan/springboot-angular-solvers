@@ -1,5 +1,6 @@
-package com.afos.service;
+package com.afos.solver.googleortool;
 
+import com.afos.solver.SolverService;
 import com.google.ortools.linearsolver.MPConstraint;
 import com.google.ortools.linearsolver.MPObjective;
 import com.google.ortools.linearsolver.MPSolver;
@@ -12,7 +13,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 
-@Service("solver")
+
 public class LPSolverServiceImpl implements SolverService {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());

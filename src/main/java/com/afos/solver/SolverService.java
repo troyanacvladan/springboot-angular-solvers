@@ -1,4 +1,4 @@
-package com.afos.service;
+package com.afos.solver;
 
 public interface SolverService {
     boolean execute();
