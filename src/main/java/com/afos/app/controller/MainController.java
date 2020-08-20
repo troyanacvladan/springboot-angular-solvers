@@ -1,10 +1,6 @@
-package com.afos.controller;
+package com.afos.app.controller;
 
-import com.afos.service.SolverService;
-import com.google.ortools.linearsolver.MPConstraint;
-import com.google.ortools.linearsolver.MPObjective;
-import com.google.ortools.linearsolver.MPSolver;
-import com.google.ortools.linearsolver.MPVariable;
+import com.afos.solver.SolverService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +18,7 @@ public class MainController {
     @RequestMapping("/")
     String index(){
         logger.info("Method started");
-        solver.execute();
+        //solver.execute();
         return "Welcome to Spring Boot app!";
     }
 

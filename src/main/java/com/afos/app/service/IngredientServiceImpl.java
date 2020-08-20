@@ -1,8 +1,10 @@
-package com.afos.service;
+package com.afos.app.service;
 
-import com.afos.bean.Ingredient;
-import com.afos.dao.IngredientRepository;
-import com.afos.exception.RecordNotFoundException;
+import com.afos.app.exception.RecordNotFoundException;
+import com.afos.app.service.api.IngredientService;
+import com.afos.app.bean.Ingredient;
+import com.afos.app.repository.IngredientRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +21,9 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public List<Ingredient> getAllIngrediens() {
 
-        List<Ingredient> employeeList = (List<Ingredient>) ingredientRepository.findAll();
-        if (employeeList.size() > 0) {
-            return employeeList;
+        List<Ingredient> entityList = ingredientRepository.findAll();
+        if (entityList.size() > 0) {
+            return entityList;
         } else {
             return new ArrayList<>();
         }
@@ -29,9 +31,9 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public Ingredient getIngredientById(Integer id) throws RecordNotFoundException {
-        Optional<Ingredient> employee = ingredientRepository.findById(id);
-        if(employee.isPresent()) {
-            return employee.get();
+        Optional<Ingredient> entity = ingredientRepository.findById(id);
+        if(entity.isPresent()) {
+            return entity.get();
         } else {
             throw new RecordNotFoundException("No ingredient record exist for given id: "+id);
         }
@@ -43,11 +45,11 @@ public class IngredientServiceImpl implements IngredientService {
 
         if(ingredient.isPresent()) { //update
             Ingredient newEntity = ingredient.get();
-            newEntity.setCode(entity.getCode());
-            newEntity.setName(entity.getName());
-            newEntity.setPrice(entity.getPrice());
-            newEntity = ingredientRepository.save(newEntity);
-            return newEntity;
+           // newEntity.setCode(entity.getCode());
+           // newEntity.setName(entity.getName());
+           // newEntity.setPrice(entity.getPrice());
+            BeanUtils.copyProperties(entity,newEntity);
+            return ingredientRepository.save(newEntity);
         } else { //create
             entity = ingredientRepository.save(entity);
             return entity;
@@ -56,9 +58,9 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public void deleteIngredientById(Integer id) throws RecordNotFoundException{
-        Optional<Ingredient> ingredient = ingredientRepository.findById(id);
+        Optional<Ingredient> entity = ingredientRepository.findById(id);
 
-        if(ingredient.isPresent()) {
+        if(entity.isPresent()) {
             ingredientRepository.deleteById(id);
         } else {
             throw new RecordNotFoundException("No ingredient record exist for given id: "+id);

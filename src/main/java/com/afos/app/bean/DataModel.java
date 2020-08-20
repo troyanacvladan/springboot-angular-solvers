@@ -1,4 +1,4 @@
-package com.afos.bean;
+package com.afos.app.bean;
 
 public class DataModel {
 

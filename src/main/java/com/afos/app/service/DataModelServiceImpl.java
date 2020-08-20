@@ -1,6 +1,7 @@
-package com.afos.service;
+package com.afos.app.service;
 
-import com.afos.bean.DataModel;
+import com.afos.app.service.api.DataModelService;
+import com.afos.app.bean.DataModel;
 import org.springframework.stereotype.Service;
 
 @Service("dataModelService")
